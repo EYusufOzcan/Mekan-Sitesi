@@ -1,0 +1,242 @@
+﻿body {
+    font-size: .85em;
+    font-family: "Segoe UI", Verdana, Helvetica, Sans-Serif;
+    color: #232323;
+    background-color: #fff;
+}
+
+header, footer, nav, section {
+    display: block;
+}
+
+.sutun1
+{
+    margin-left: 65px;
+    margin-top: -24px;
+}
+
+.sutun2
+{
+    margin-left: 100px;
+    margin-top: -24px;
+}
+
+.sutun3 
+{
+    width: 825px;
+    border-color: #e9f3fa;
+    border-width: 2px;
+}
+
+.sutun4 
+{
+    margin-left: 880px;
+    margin-top: -80px;
+    width: 150px;
+}
+
+.sutun5
+{
+    margin-left: 50px;
+    margin-top: 25px;
+}
+
+.sutun6
+{
+    margin-left: 580px;
+    margin-top: 25px;
+}
+
+.sutun7
+{
+    margin-left: 50px;
+    margin-top: -440px;
+}
+
+.sutun8
+{
+    margin-left: 50px;
+    margin-top: -410px;
+}
+
+.sutun9 
+{
+    margin-top: -400px;
+    margin-left: 50px;
+}
+
+.sutun10 
+{
+    margin-top: -350px;
+    margin-left: 50px;
+}
+
+.sutun11 
+{
+    margin-left: 70px;
+}
+
+.sutun12
+{
+    margin-left: 50px;
+    margin-top: -420px;
+}
+
+.sutun13
+{
+    margin-left: 715px;
+    margin-top: -35px;
+}
+
+.sutun14
+{
+    margin-left: 713px;
+    margin-top: -84px;
+}
+
+.sutun15 
+{
+    margin-top: -455px;
+    margin-left: 50px;
+}
+
+.sutun16 
+{
+    margin-left: 105px;
+    margin-top: -21px;
+}
+
+.sutun17 
+{
+    margin-left: 50px;
+}
+
+
+/* Styles for basic forms
+-----------------------------------------------------------*/
+fieldset {
+    border: 1px solid #ddd;
+    padding: 0 1.4em 1.4em 1.4em;
+    margin: 0 0 1.5em 0;
+}
+
+legend {
+    font-size: 1.2em;
+    font-weight: bold;
+}
+
+textarea {
+    height: 100px;
+    width: 170px;
+    font-family: Arial; 
+    resize: none;
+}
+
+.editor-label {
+    margin: 1em 0 0 0;
+}
+
+.editor-field {
+    margin: 0.5em 0 0 0;
+}
+
+.webgrid-table
+{ 
+    font-family: Arial;
+    font-size: 1.2em;
+    width: 100%;
+    display: table;
+    border-color: white;
+}
+
+.webgrid-table1
+{ 
+    font-family: Arial;
+    font-size: 1.2em;
+    width: 80%;
+    display: table;
+    border-color: white;
+}
+
+.webgrid-table2
+{ 
+    font-family: Arial;
+    font-size: 1.2em;
+    width: 60%;
+    display: table;
+    border-color: white;
+}
+
+.webgrid-table td, th 
+{ 
+    border: 1px solid #e9f3fa;
+    padding: 3px 5px 2px;
+}
+
+.webgrid-header 
+{
+    background-color: #e9f3fa;
+    color: black;
+    padding-bottom: 4px;
+    padding-top: 5px;
+    text-align: center;
+}
+
+.webgridfooter
+{  
+}
+
+.webgrid-row-style
+{
+    padding: 3px 5px 2px;
+    text-align: center;
+}
+
+.webgrid-alternating-row 
+{
+    background-color: #e9f3fa;
+    padding: 3px 5px 2px;
+    text-align: center;
+}
+
+:link 
+{
+    color: #000;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+:visited 
+{
+    color: black;
+    font-weight: bold;
+}
+
+.editor-label {
+    font: bolder;
+}
+
+
+/* Styles for validation helpers
+-----------------------------------------------------------*/
+.field-validation-error {
+    color: #f00;
+}
+
+.field-validation-valid {
+    display: none;
+}
+
+.input-validation-error {
+    border: 1px solid #f00;
+    background-color: #fee;
+}
+
+.validation-summary-errors {
+    font-weight: bold;
+    color: #f00;
+}
+
+.validation-summary-valid {
+    display: none;
+}

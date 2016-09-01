@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Yorumlar";
+}
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 7);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div id="content">
+    @using (Html.BeginForm("ShowComment", "Home", FormMethod.Post))
+    { 
+        <br />
+        <div> &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        @Html.ActionLink("Geri Dön", "List")
+            </div>
+        <br />
+              
+     @grid.GetHtml(
+     tableStyle:"webgrid-table2",
+     headerStyle:"webgrid-header",
+     footerStyle:"webgridfooter",
+     alternatingRowStyle:"webgrid-alternating-row",
+     rowStyle:"webgrid-row-style",
+     columns: grid.Columns(
+     grid.Column(header:"Mekan Ad", columnName:"MekanAd"),
+     grid.Column(header:"Puan", columnName: "Puan"),
+     grid.Column(header: "Yorum", columnName:"Yorumlar")
+     ))
+    }
+</div>

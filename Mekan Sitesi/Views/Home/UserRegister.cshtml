@@ -1,0 +1,57 @@
+﻿@model Mekan_Sitesi.Models.Kullanicilar
+
+@{
+    ViewBag.Title = "Kullanıcı Kayıt";
+}
+
+<h2>Kullanıcı Kayıt</h2>
+
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+       <table>
+           <tr>
+            <td>Kullanıcı Ad:</td> 
+            <td>@Html.EditorFor(model => model.KullaniciAd)</td> 
+            <td>@Html.ValidationMessageFor(model => model.KullaniciAd)</td> 
+           </tr>
+
+          <tr>
+            <td>Şifre:</td> 
+            <td>@Html.Password("Sifre")</td> 
+            <td>@Html.ValidationMessageFor(model => model.Sifre)</td> 
+          </tr>
+
+           <tr>
+            <td>Ad:</td> 
+            <td>@Html.EditorFor(model => model.Ad)</td> 
+            <td>@Html.ValidationMessageFor(model => model.Ad)</td> 
+          </tr>
+
+           <tr>
+            <td>Soyad:</td> 
+            <td>@Html.EditorFor(model => model.Soyad)</td> 
+            <td>@Html.ValidationMessageFor(model => model.Soyad)</td> 
+          </tr>
+
+        <tr>
+            <td>Email:</td> 
+            <td>@Html.EditorFor(model => model.Email)</td> 
+            <td>@Html.ValidationMessageFor(model => model.Email)</td> 
+          </tr>
+    
+        <tr>
+            <td><input type="submit" value="Kaydol" /></td>
+        </tr>
+       </table>
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="sutun1">
+@using (Html.BeginForm("List", "Home"))
+{
+    <input type="submit" value="İptal" />
+}
+    </div>

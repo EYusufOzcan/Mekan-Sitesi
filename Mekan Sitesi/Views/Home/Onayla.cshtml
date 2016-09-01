@@ -1,0 +1,105 @@
+﻿@model Mekan_Sitesi.Models.OnayBekleyen
+
+@{
+    ViewBag.Title = "Onayla";
+}
+
+<h2>Onayla</h2>
+
+@using (Html.BeginForm("Onayla", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+        @Html.HiddenFor(model => model.ID)
+        @Html.HiddenFor(model => model.Gonderen)
+
+    <div class="sutun6">
+    <div class="display-label">
+         Mekan Sahibi:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.MekanSahibi, new { @readonly = "readonly"})
+    </div>
+
+    <div class="display-label">
+         Mekan Ad:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.MekanAd, new { @readonly = "readonly"})
+    </div>
+
+    <div class="display-label">
+         Resim:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.Resim, new { @readonly = "readonly"})
+    </div>
+
+    <div class="display-label">
+         Adres:
+    </div>
+
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Adres, new { @readonly = "readonly"})
+    </div>
+
+    <div class="display-label">
+         Telefon:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.Telefon, new { @readonly = "readonly"})
+    </div>
+   
+        <div class="sutun11">
+       <p>
+           <input type="submit" value="Onayla" />
+        </p>
+            </div>
+        </div>
+    }
+
+<div class="sutun13">
+ @using (Html.BeginForm("OnayBekleyen", "Home"))
+ {
+       <p>
+           <input type="submit" value="İptal" />
+        </p>      
+ }
+     </div>
+    <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+   <script>
+      function initialize() {
+        var mapCanvas = document.getElementById('map');
+        var mapOptions = {
+            center: new google.maps.LatLng(document.getElementById("Lat").value, document.getElementById("Lng").value), 
+            zoom: 15,
+            mapTypeId: google.maps.MapTypeId.ROADMAP
+        }
+        var map = new google.maps.Map(mapCanvas, mapOptions)
+        var mylatlng = new google.maps.LatLng(document.getElementById("Lat").value, document.getElementById("Lng").value);
+        var marker = new google.maps.Marker({
+            position: mylatlng,
+            map: map,
+            dragable: false
+        });
+      }
+      google.maps.event.addDomListener(window, 'load', initialize);
+       </script>
+       
+     <div class="sutun10">
+    <div id="map"></div>
+     <label hidden>Enlem:</label>
+     <input type="text" id="Lat" name="Lat" value="@Model.latitude" hidden/><br />
+     <label hidden>Boylam:</label>
+     <input type="text" id="Lng" name="Lng" value="@Model.longitude" hidden/><br />
+          </div>
+
+   @section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

@@ -1,0 +1,31 @@
+﻿@{
+    ViewBag.Title = "Mekanlar";
+}
+
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 7);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div id="content">
+    @using (Html.BeginForm("List", "Home", FormMethod.Post))
+    { 
+        
+     @grid.GetHtml(
+     tableStyle:"webgrid-table",
+     headerStyle:"webgrid-header",
+     footerStyle:"webgridfooter",
+     alternatingRowStyle:"webgrid-alternating-row",
+     rowStyle:"webgrid-row-style",
+     columns: grid.Columns(
+     grid.Column(header:"Resim", format:@<img src="~/Dosyalar/@item.Resim" style= "width:100px; height:100px;" />),
+     grid.Column(header:"Mekan Sahibi", columnName: "MekanSahibi"),
+     grid.Column(header:"Mekan Ad", columnName:"MekanAd"),
+     grid.Column(header:"Adres", columnName: "Adres"),
+     grid.Column(header: "Telefon", columnName: "Telefon"),
+     grid.Column(header: "Puan", columnName: "Puan"),
+     grid.Column(format: @<text> @Html.ActionLink("Görüntüle", "Detail", new { id = item.ID }) </text>)
+     ))
+    }
+</div>

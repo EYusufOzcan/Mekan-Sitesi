@@ -1,0 +1,26 @@
+﻿@model Mekan_Sitesi.Models.Degerlendirme
+
+@using (Html.BeginForm("Comment", "Home", FormMethod.Post)) {
+    @Html.ValidationSummary(true)
+
+        <div class="editor-label">
+            Yorumunuz:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Yorumlar)
+            @Html.ValidationMessageFor(model => model.Yorumlar)
+        </div>
+
+        <div class="editor-label">
+            Puanınız:
+        </div>
+        <div class="editor-field">
+          <input type="number" name="puan" min="1" max="5" required style="width:170px;"/>
+        </div>
+
+        <p>
+            <input type="submit" value="Gönder" />
+        </p>
+
+    @Scripts.Render("~/bundles/jqueryval")
+}

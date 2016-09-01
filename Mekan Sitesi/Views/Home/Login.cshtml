@@ -1,0 +1,41 @@
+﻿@model Mekan_Sitesi.Models.Kullanicilar
+
+@{
+    ViewBag.Title = "Giriş";
+}
+
+<div class="sutun5">
+<h1>Giriş Ekranı</h1>
+
+@using (Html.BeginForm())
+{ 
+    @Html.AntiForgeryToken()
+    @Html.ValidationSummary(true)
+    <table>
+        <tr>
+            <td>Kullanıcı Adı: </td>
+            <td>@Html.TextBoxFor(a=>a.KullaniciAd)</td>
+            <td>@Html.ValidationMessageFor(a=>a.KullaniciAd)</td>
+        </tr>
+        <tr>
+            <td>Şifre: </td>
+            <td>@Html.Password("Sifre")</td>
+            <td>@Html.ValidationMessageFor(a=>a.Sifre)</td>
+        </tr>
+        <tr>
+            <td><input type="submit" value="Giriş" /></td>
+        </tr>
+    </table>
+}
+    </div>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+<div class="sutun2">
+@using (Html.BeginForm("List", "Home"))
+{
+    <input type="submit" value="İptal" />
+}
+    </div>

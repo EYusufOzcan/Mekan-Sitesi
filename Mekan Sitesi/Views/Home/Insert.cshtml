@@ -1,0 +1,114 @@
+﻿@model Mekan_Sitesi.Models.OnayBekleyen
+
+@{
+    ViewBag.Title = "Insert";
+}
+
+@using (Html.BeginForm("Insert", "Home", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    @Html.ValidationSummary(true)
+
+  
+       <div class="sutun6">
+        <div class="editor-label">
+            Mekan Sahibi:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MekanSahibi)
+            @Html.ValidationMessageFor(model => model.MekanSahibi)
+        </div>
+    
+        <div class="editor-label">
+            Mekan Ad:
+        </div>
+        <div class="editor-field">
+            @Html.EditorFor(model => model.MekanAd)
+            @Html.ValidationMessageFor(model => model.MekanAd)
+        </div>
+
+        <div class="editor-label">
+            Resim:
+        </div>
+        <div class="editor-field">
+            <input type="file" name="file" />
+        </div>
+
+        <div class="editor-label">
+            Adres:
+        </div>
+        <div class="editor-field">
+            @Html.TextAreaFor(model => model.Adres)
+            @Html.ValidationMessageFor(model => model.Adres)
+        </div>
+    
+        <div class="editor-label">
+            Telefon:
+        </div>
+        <div class="editor-field">
+            <input type="number" name="telefon" required/>
+            @Html.ValidationMessageFor(model => model.Telefon)
+        </div>  
+ 
+        <p>
+           &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <input type="submit" value="Gönder" />
+        </p>
+           
+         @Html.ActionLink("Mekanlarını Gör", "Onaylanmıs") || @Html.ActionLink("Çıkış Yap", "Exit") <br />
+           &nbsp&nbsp&nbsp&nbsp @Html.ActionLink("Diğer Mekanları Gör", "List2")
+           </div>
+
+   
+    <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+   <script>
+       function initialize() {
+           var mapCanvas = document.getElementById('map');
+           var mapOptions = {
+               center: new google.maps.LatLng(41.0043163, 29.0198162,12), /* Nerede açılıp merkez alacağını gösteriyor*/
+               zoom: 10,
+               mapTypeId: google.maps.MapTypeId.ROADMAP /*Haritayı yol halinde gösteriyor*/
+           }
+           var map = new google.maps.Map(mapCanvas, mapOptions) /* Yukarıdaki özelliklere sahip bir google map açıyor. */
+           var marker;
+
+           function placeMarker(location) {
+               if (marker) {
+                   marker.setPosition(location);
+               } else {
+                   marker = new google.maps.Marker({
+                       position: location,
+                       map: map
+                   });
+               }
+           }
+
+           google.maps.event.addListener(map, 'click', function (event) {
+               document.getElementById("Lat").value = event.latLng.lat();
+               document.getElementById("Lng").value = event.latLng.lng();
+               placeMarker(event.latLng);
+           });
+        
+       }
+      google.maps.event.addDomListener(window, 'load', initialize);
+       </script>
+       
+     <div class="sutun7">
+     <div id="map"></div>
+     <label hidden>Enlem:</label>
+     <input type="text" id="Lat" name="Lat" value="0" hidden/><br />
+     <label hidden>Boylam:</label>
+     <input type="text" id="Lng" name="Lng" value="0" hidden/><br />
+          </div>
+     
+}
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+
+

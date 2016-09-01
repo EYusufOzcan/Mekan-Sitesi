@@ -1,0 +1,119 @@
+﻿@model Mekan_Sitesi.Models.Mekanlar
+
+@{
+    ViewBag.Title = "Puan Ver";
+}
+
+<div class="sutun6">
+    <div class="display-label">
+         Mekan Sahibi:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.MekanSahibi, new { @readonly = "readonly" })
+    </div>
+
+    <div class="display-label">
+         Mekan Ad:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.MekanAd, new { @readonly = "readonly" })
+    </div>
+
+    <div class="display-label">
+        <br />
+        <img src="/Dosyalar/@Model.Resim" style="width:170px; height:150px;" />
+        <br />
+    </div>
+
+    <div class="display-label">
+         Adres:
+    </div>
+    <div class="display-field">
+        @Html.TextAreaFor(model => model.Adres, new { @readonly = "readonly" })
+    </div>
+
+    <div class="display-label">
+         Telefon:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.Telefon, new { @readonly = "readonly" })
+    </div>
+
+    <div class="display-label">
+         Puan:
+    </div>
+    <div class="display-field">
+        @Html.TextBoxFor(model => model.Puan, new { @readonly = "readonly" })
+    </div>
+
+   <div>
+       <br /> &nbsp&nbsp&nbsp&nbsp
+       <input type="button" value="Yorum Yap" id="btnId" />
+       <div class="sutun16">
+       @using (Html.BeginForm("List2", "Home"))
+       {
+            <input type="submit" value="Geri Dön" />
+       }
+           </div>
+   </div>
+    </div>
+
+  <style>
+      #map {
+        width: 500px;
+        height: 400px;
+      }
+    </style>
+    <script src="https://maps.googleapis.com/maps/api/js"></script>
+   <script>
+       function initialize() {
+           var mapCanvas = document.getElementById('map');
+           var mapOptions = {
+               center: new google.maps.LatLng(document.getElementById("Lat").value, document.getElementById("Lng").value),
+               zoom: 15,
+               mapTypeId: google.maps.MapTypeId.ROADMAP
+           }
+           var map = new google.maps.Map(mapCanvas, mapOptions)
+           var infowindow = new google.maps.InfoWindow();
+           var mylatlng = new google.maps.LatLng(document.getElementById("Lat").value, document.getElementById("Lng").value);
+           var marker = new google.maps.Marker({
+               position: mylatlng,
+               map: map,
+               dragable: false
+           });
+       }
+       google.maps.event.addDomListener(window, 'load', initialize);
+       </script>
+       
+     <div class="sutun15">
+     <div id="map"></div>
+     <label hidden>Enlem:</label>
+     <input type="text" id="Lat" name="Lat" value="@Model.latitude" hidden/><br />
+     <label hidden>Boylam:</label>
+     <input type="text" id="Lng" name="Lng" value="@Model.longitude" hidden/><br />
+     </div>
+     <div id="dialog" title="Basic dialog">
+     </div>
+
+   <script src="http://code.jquery.com/jquery-1.9.1.js"></script>
+   <script src="http://code.jquery.com/ui/1.10.3/jquery-ui.js"></script>
+   <link rel="stylesheet" href="http://code.jquery.com/ui/1.10.3/themes/smoothness/jquery-ui.css" />
+
+   <script type="text/javascript">
+    $('#btnId').click(function () {
+        jQuery.noConflict();
+        $('#dialog').load("@Url.Action("Comment","Home")",
+                    function () { $('#dialog').dialog('open');
+                    });
+    });
+
+        $('#dialog').dialog({
+            autoOpen: false,
+            width: 400,
+            resizable: false,
+            title: 'Yorum Yap',
+            modal: true
+        });
+</script>
+
+

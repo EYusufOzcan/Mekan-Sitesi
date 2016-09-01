@@ -1,0 +1,37 @@
+﻿@{
+    ViewBag.Title = "Onay Bekleyenler";
+}
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 7);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div id="content">
+    @using (Html.BeginForm("List", "Home", FormMethod.Post))
+    { 
+        <div>
+            <br />
+            &nbsp&nbsp&nbsp&nbsp&nbsp @Html.ActionLink("Onay Bekleyenler","OnayBekleyen") || @Html.ActionLink("Reddedilenler", "Reddedilen") || @Html.ActionLink("Onaylananlar", "Onaylanan") || @Html.ActionLink("Çıkış Yap", "Exit")
+            <br /><br />
+        </div>
+        
+     @grid.GetHtml(
+     tableStyle:"webgrid-table1",
+     headerStyle:"webgrid-header",
+     footerStyle:"webgridfooter",
+     alternatingRowStyle:"webgrid-alternating-row",
+     rowStyle:"webgrid-row-style",
+     columns: grid.Columns(
+     grid.Column(header:"Resim", format:@<img src="~/Dosyalar/@item.Resim" style= "width:100px; height:100px;" />),
+     grid.Column(header:"Mekan Sahibi", columnName: "MekanSahibi"),
+     grid.Column(header:"Mekan Ad", columnName:"MekanAd"),
+     grid.Column(header:"Adres", columnName: "Adres"),
+     grid.Column(header:"Telefon", columnName: "Telefon"),
+     grid.Column(header: "Gönderen", columnName:"Gonderen"),
+     grid.Column(format: @<text> @Html.ActionLink("Onayla", "Onayla", new { id = item.ID }) </text>),
+     grid.Column(format: @<text> @Html.ActionLink("Reddet", "Reddet", new { id = item.ID }) </text>)
+     
+     ))
+    }
+</div>

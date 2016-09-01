@@ -1,0 +1,50 @@
+﻿@{
+    ViewBag.Title = "Mekanlar";
+}
+
+@{
+    var grid = new WebGrid(source: Model, canPage: true, rowsPerPage: 5);
+    grid.Pager(WebGridPagerModes.All);
+}
+
+<div id="content">
+    @using (Html.BeginForm("List", "Home", FormMethod.Post))
+    { 
+        
+        <fieldset class="sutun3">
+            <legend>Arama</legend>
+            <br />
+            &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
+        <input type="text" name="mekansahibi" placeholder="Mekan Sahibine Göre Ara" />
+        &nbsp&nbsp&nbsp
+        <input type="text" name="mekanad" placeholder="Mekan Adına Göre Ara" /> 
+        &nbsp&nbsp&nbsp
+        <input type="text" name="adres" placeholder="Adrese Göre Ara" />
+        &nbsp&nbsp&nbsp
+        <input type="number" name="Puan" placeholder="Puana Göre Ara" min="1" max="5" style="width:150px;"/>
+        <input type="submit" value="Ara" />
+            </fieldset>
+        <div class="sutun4">
+            <br />
+        @Html.ActionLink("Giriş Yap", "Login") || @Html.ActionLink("Kaydol","UserRegister")
+        </div>
+        <br /><br />
+    
+     @grid.GetHtml(
+     tableStyle:"webgrid-table",
+     headerStyle:"webgrid-header",
+     footerStyle:"webgridfooter",
+     alternatingRowStyle:"webgrid-alternating-row",
+     rowStyle:"webgrid-row-style",
+     columns: grid.Columns(
+     grid.Column(header:"Resim", format:@<img src="~/Dosyalar/@item.Resim" style= "width:150px; height:150px;" />),
+     grid.Column(header:"Mekan Sahibi", columnName: "MekanSahibi"),
+     grid.Column(header:"Mekan Ad", columnName:"MekanAd"),
+     grid.Column(header:"Adres", columnName: "Adres"),
+     grid.Column(header: "Telefon", columnName: "Telefon"),
+     grid.Column(header: "Puan(5 üzerinden)", columnName: "Puan"),
+     grid.Column(format: @<text> @Html.ActionLink("Görüntüle", "Show", new { id = item.ID }) </text>),
+     grid.Column(format: @<text> @Html.ActionLink("Yorumları Gör", "ShowComment", new { id = item.ID }) </text>)
+     ))
+    }
+</div>
